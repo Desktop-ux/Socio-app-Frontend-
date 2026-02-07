@@ -1,3 +1,7 @@
+/* =====================
+   BASE: MOBILE
+===================== */
+
 /* BACKDROP */
 .comment-backdrop {
   position: fixed;
@@ -5,14 +9,15 @@
   background: rgba(0,0,0,0.6);
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   z-index: 999;
 }
 
-/* MODAL (HALF SCREEN) */
+/* MODAL */
 .comment-modal {
   width: 100%;
   max-width: 420px;
-  height: 60vh;              
+  height: 60vh;
   background: #f5f5f5;
   color: black;
   border-radius: 16px 16px 0 0;
@@ -27,17 +32,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 14px;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ddd;
   font-weight: 600;
 }
-.comment-header button{
-  background-color: none;
-  color: black;
-  font-weight: 800;
-  padding: 0.15rem;
-  border-radius: 50%;
+
+.comment-header button {
+  background: none;
   border: none;
-  outline: none;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 /* BODY */
@@ -50,12 +53,15 @@
 /* COMMENT ROW */
 .comment-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
-  margin-bottom: 12px;
-  
+  padding: 10px 0;
+  border-bottom: 1px solid #eaeaea;
 }
 
+.comment-row:last-child {
+  border-bottom: none;
+}
 
 .comment-user {
   font-weight: 600;
@@ -66,7 +72,49 @@
   font-weight: normal;
 }
 
-/* SLIDE ANIMATION */
+/* DRAG BAR */
+.drag-bar {
+  width: 40px;
+  height: 4px;
+  background: #ddd;
+  border-radius: 10px;
+  margin: 8px auto;
+}
+
+
+/* =====================
+   TABLET (768px+)
+===================== */
+
+@media (min-width: 768px) {
+  .comment-modal {
+    height: 70vh;
+    max-width: 500px;
+  }
+}
+
+
+/* =====================
+   DESKTOP (1024px+)
+===================== */
+
+@media (min-width: 1024px) {
+  .comment-backdrop {
+    align-items: center;
+  }
+
+  .comment-modal {
+    height: 75vh;
+    max-width: 520px;
+    border-radius: 12px;
+  }
+}
+
+
+/* =====================
+   ANIMATION
+===================== */
+
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -74,11 +122,4 @@
   to {
     transform: translateY(0);
   }
-}
-.drag-bar {
-  width: 40px;
-  height: 4px;
-  background: #f3f3f3;
-  border-radius: 10px;
-  margin: 8px auto;
 }

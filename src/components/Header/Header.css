@@ -1,3 +1,6 @@
+/* =====================
+   BASE (MOBILE)
+===================== */
 .app-header {
   position: fixed;
   top: 0;
@@ -6,26 +9,49 @@
   height: 60px;
   background: white;
   display: flex;
-  align-items: center;      
+  align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   z-index: 1000;
 }
 
 .logo {
-  width: 50%;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
   font-weight: 700;
-   
 }
-.logo img{
-  width: 60%;
+
+.logo img {
+  width: 120px;
 }
 
 .header-right {
   display: flex;
-  align-items: center;         
+  align-items: center;
+}
+
+
+/* =====================
+   TABLET (768px – 1023px)
+===================== */
+@media (min-width: 768px) and (max-width: 1010px) {
+  .app-header {
+    padding: 0 24px;
+    height: 64px;
+  }
+
+  .logo img {
+    width: 140px;
+  }
+}
+
+
+/* =====================
+   DESKTOP (≥1024px)
+===================== */
+@media (min-width: 1124px) {
+  .app-header {
+    display: none;
+  }
 }

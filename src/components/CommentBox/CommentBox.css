@@ -1,3 +1,7 @@
+/* ======================
+   BASE (MOBILE)
+====================== */
+
 .comment-list {
   margin-top: 6px;
 }
@@ -11,10 +15,47 @@
 
 .comment {
   font-size: 14px;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  line-height: 1.4;
 }
 
 .comment-user {
   font-weight: 600;
   margin-right: 4px;
+}
+
+
+/* ======================
+   TABLET (768px+)
+====================== */
+
+@media (min-width: 768px) {
+  .view-comments {
+    font-size: 14px;
+  }
+
+  .comment {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+}
+
+
+/* ======================
+   DESKTOP (1024px+)
+====================== */
+
+@media (min-width: 1024px) {
+  .comment-list {
+    margin-top: 8px;
+  }
+
+  .view-comments {
+    font-size: 14px;
+  }
+
+  .comment {
+    font-size: 15px;
+    line-height: 1.5;
+  }
 }

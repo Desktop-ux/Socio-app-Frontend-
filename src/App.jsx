@@ -5,6 +5,7 @@ import Signup from "./Pages/Signup/Signup";
 import Profile from "./Pages/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   /* ---------- APP STATE ---------- */
@@ -48,9 +49,9 @@ function App() {
     // Scroll after render
     setTimeout(() => {
       window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+        top: 0,
+        behavior: "smooth",
+      });
     }, 0);
   };
 
@@ -69,6 +70,12 @@ function App() {
   /* ---------- APP UI ---------- */
   return (
     <>
+      <Sidebar
+        goFeed={() => setPage("feed")}
+        goProfile={toggleProfile}
+        goCreate={scrollToCreatePost}
+        
+      />
       {/* HEADER (TOP) */}
       <Header
         goHome={goFeed}

@@ -1,0 +1,60 @@
+
+
+/* Desktop only */
+@media (min-width: 1124px) {
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between;  */
+    width: 240px;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #fff;
+  }
+
+   .logo {
+    width: 100%;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    height: 60%;
+    /* border: 1px solid rebeccapurple; */
+  }
+
+  .sidebar-nav button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .sidebar-user {
+    /* margin-top: auto; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+  }
+}
+.sidebar {
+  display: none;
+}
+
+@media (min-width: 1124px) {
+  .sidebar {
+    display: flex;
+  }
+}

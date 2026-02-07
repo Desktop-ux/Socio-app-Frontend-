@@ -1,3 +1,6 @@
+/* =====================
+   BASE (MOBILE)
+===================== */
 .bottom-navbar {
   position: fixed;
   bottom: 0;
@@ -31,4 +34,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* =====================
+   TABLET (768px – 1023px)
+===================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bottom-navbar {
+    height: 60px;
+  }
+
+  .bottom-navbar button {
+    font-size: 24px;
+  }
+}
+
+/* =====================
+   DESKTOP (≥1024px)
+===================== */
+@media (min-width: 1124px) {
+  .bottom-navbar {
+    display: none;
+  }
 }

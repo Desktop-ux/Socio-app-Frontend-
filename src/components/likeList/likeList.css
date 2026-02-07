@@ -1,20 +1,24 @@
+/* ======================
+   BASE (MOBILE + TABLET)
+====================== */
+
 .like-modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end; /* mobile & tablet */
   z-index: 999;
 }
 
 /* CARD */
 .like-modal {
-  width: 90%;
-  max-width: 400px;
+  width: 100%;
+  max-width: 420px;
   background: #fbfbfb;
   color: black;
-  border-radius: 12px;
+  border-radius: 16px 16px 0 0;
   overflow: hidden;
 }
 
@@ -27,7 +31,7 @@
   color: #333;
   font-weight: 600;
   background-color: white;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #ddd;
 }
 
 .like-modal-header button {
@@ -48,11 +52,10 @@
 /* ROW */
 .like-user-row {
   display: flex;
+  color: #333;
   justify-content: space-between;
   align-items: center;
   padding: 10px 12px;
-  color: black;
-  
 }
 
 .like-user-left {
@@ -65,7 +68,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,3 +80,18 @@
 }
 
 
+/* ======================
+   DESKTOP ONLY
+====================== */
+
+@media (min-width: 1024px) {
+  .like-modal-backdrop {
+    align-items: center; /* center on desktop */
+  }
+
+  .like-modal {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+  }
+}
