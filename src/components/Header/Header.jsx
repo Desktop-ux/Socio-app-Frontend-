@@ -1,7 +1,7 @@
 import "./Header.css";
 import Avatar from "../Avatar/Avatar";
 
-export default function Header() {
+export default function Header({goProfile}) {
   // get username safely
   const username = localStorage.getItem("username");
 
@@ -13,9 +13,11 @@ export default function Header() {
       {/* RIGHT */}
       <div className="header-right">
         <Avatar
-          name={username || "U"}   // fallback to avoid '?'
+          name={username}
           size={32}
+          onclick={goProfile}
         />
+
       </div>
     </div>
   );

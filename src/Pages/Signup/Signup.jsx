@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import api from "../../api/api";
-import "./../Login/Login.css";
+// import "./../Login/Login.css";
+import './Signup.css'
 
 export default function Signup({ onSignup, goLogin }) {
   const cardRef = useRef(null);
@@ -37,8 +38,8 @@ export default function Signup({ onSignup, goLogin }) {
     <div className="auth-layout">
       {/* LEFT VISUAL (DESKTOP ONLY) */}
       <div className="auth-visual">
-        <h1>Join the community</h1>
-        <p>Create • Share • Connect</p>
+        {/* <h1>Join the community</h1>
+        <p>Create • Share • Connect</p> */}
       </div>
 
       {/* RIGHT FORM */}

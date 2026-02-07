@@ -1,25 +1,39 @@
+import Avatar from "../Avatar/Avatar";
 import "./Navbar.css";
-import api from "../../api/api";
 
-export default function Navbar({ onLogout }) {
+export default function Navbar({
+  active,
+  goFeed,
+  goCreate,
+  goProfile,
+}) {
+  const username = localStorage.getItem("username");
+
   return (
-    <div className="navbar">
-      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    <div className="bottom-navbar">
+      {/* FEED */}
+      <button
+        className={active === "feed" ? "active" : ""}
+        onClick={goFeed}
+      >
         🏠
       </button>
 
-      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+      {/* CREATE POST */}
+      <button
+        className={active === "create" ? "active" : ""}
+        onClick={goCreate}
+      >
         ➕
       </button>
 
-      <button
-        onClick={async () => {
-          await api.post("/auth/logout");
-          onLogout();
-        }}
+      {/* PROFILE */}
+      <div
+        className={`nav-avatar ${active === "profile" ? "active" : ""}`}
+        onClick={goProfile}
       >
-        🚪
-      </button>
+        <Avatar name={username} size={26} />
+      </div>
     </div>
   );
 }

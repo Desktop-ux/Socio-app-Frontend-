@@ -1,6 +1,6 @@
 import "./Avatar.css";
 
-export default function Avatar({ name, size = 36 }) {
+export default function Avatar({ name, size = 36 , onclick }) {
   const letter = name ? name[0].toUpperCase() : "?";
 
   return (
@@ -11,6 +11,7 @@ export default function Avatar({ name, size = 36 }) {
         height: size,
         fontSize: size / 2
       }}
+      onClick={onclick}
     >
       {letter}
     </div>

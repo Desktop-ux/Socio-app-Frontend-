@@ -17,23 +17,36 @@ export default function Login({ onLogin, goSignup }) {
   }, []);
 
   const handleLogin = async () => {
-    if (!email || !password) return alert("Fill all fields");
+    if (!email || !password) {
+      alert("Fill all fields");
+      return;
+    }
 
-    const res = await api.post("/auth/login", { email, password });
+    try {
+      const res = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
-    localStorage.setItem("username", res.data.user.username);
-    localStorage.setItem("userId", res.data.user._id);
+     
+      localStorage.setItem("username", res.data.user.username);
+      localStorage.setItem("email", res.data.user.email);
+      localStorage.setItem("userId", res.data.user._id);
 
-    onLogin();
+      onLogin();
+    } catch (err) {
+      alert("Invalid credentials");
+    }
   };
 
   return (
     <div className="auth-layout">
       {/* LEFT VISUAL (DESKTOP ONLY) */}
       <div className="auth-visual">
-        {/* <h1>Share your moments</h1>
-        <p>Post • Like • Connect</p> */}
+        <h1>Share your moments</h1>
+        <p>Post • Like • Connect</p>
       </div>
+
       {/* RIGHT FORM */}
       <div className="auth-form">
         <div className="auth-card" ref={cardRef}>

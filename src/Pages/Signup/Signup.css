@@ -1,29 +1,138 @@
-.auth-container {
-  max-width: 350px;
-  margin: 80px auto;
+/* MOBILE FIRST */
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../assets/social_bg.jpg');
+  padding: 16px;
+}
+
+/* Hide visual by default (mobile) */
+.auth-visual {
+  display: none;
+}
+
+/* FORM AREA */
+.auth-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* CARD */
+.auth-card {
+  width: 100%;
+  max-width: 380px;
   background: white;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
-.auth-container input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.auth-container button {
+.auth-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* INPUTS */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.input-group input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+/* BUTTON */
+.primary-btn {
   width: 100%;
-  padding: 10px;
-  background: #1976d2;
-  color: white;
+  padding: 12px;
+  border-radius: 10px;
   border: none;
-  border-radius: 6px;
+  background: #468be5;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.link {
-  margin-top: 12px;
-  color: #1976d2;
+.primary-btn:hover {
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.switch-text {
+  font-size: 13px;
+  margin-top: 18px;
+}
+
+.switch-text span {
+  color: #468be5;
+  font-weight: 600;
   cursor: pointer;
+}
+@media (min-width: 1024px) {
+  .auth-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: url('./../../assets/blue.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+  .auth-visual {
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background:  linear-gradient(rgba(0, 0, 0, 0.088), rgba(0, 0, 0, 0.17)),url('./../../assets/blue_logo.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
+
+  .auth-visual h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .auth-visual p {
+    font-size: 16px;
+    opacity: 0.85;
+  }
+
+  .auth-form {
+    width:30vw;
+    height: 50vh;
+    background-color: white;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    align-items: center;
+  }
 }
