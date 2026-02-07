@@ -1,63 +1,67 @@
-import { useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import api from "../../api/api";
 import "./Login.css";
+import gsap from "gsap";
 
 export default function Login({ onLogin, goSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    gsap.fromTo(
+      cardRef.current,
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+    );
+  }, []);
+
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      return alert("Fill all fields");
-    }
+    if (!email || !password) return alert("Fill all fields");
 
-    try {
-      // 🔑 GET RESPONSE
-      const res = await api.post("/auth/login", {
-        email,
-        password,
-      });
+    const res = await api.post("/auth/login", { email, password });
 
-      // ✅ SAVE USER INFO (THIS FIXES HEADER)
-      localStorage.setItem("username", res.data.user.username);
-      localStorage.setItem("userId", res.data.user._id);
+    localStorage.setItem("username", res.data.user.username);
+    localStorage.setItem("userId", res.data.user._id);
 
-      // optional: if backend sends token
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-      }
-
-      // ✅ CONTINUE APP FLOW
-      onLogin();
-
-    } catch (err) {
-      console.error(err);
-      alert("Invalid email or password");
-    }
+    onLogin();
   };
 
   return (
-    <div className="auth-container">
-      <h2>Login</h2>
+    <div className="auth-page">
+     
+      <div className="auth-card" ref={cardRef}>
+        <h2 className="auth-title">Welcome Back 👋</h2>
+        <p className="auth-subtitle">Login to continue</p>
 
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <div className="input-group">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-      <button onClick={handleLogin}>Login</button>
+        <button className="primary-btn" onClick={handleLogin}>
+          Login
+        </button>
 
-      <p onClick={goSignup} className="link">
-        Don’t have an account? Sign up
-      </p>
+        <p className="switch-text">
+          Don’t have an account?{" "}
+          <span onClick={goSignup}>Sign up</span>
+        </p>
+      </div>
+      
+
     </div>
   );
 }
