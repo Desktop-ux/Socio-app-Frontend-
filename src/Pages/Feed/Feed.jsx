@@ -5,7 +5,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/PostCard/PostCard";
 import "./feed.css";
 
-export default function Feed() {
+export default function Feed({createPostRef }) {
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
@@ -22,7 +22,7 @@ export default function Feed() {
       <h2 className="feed-title">Feed</h2>
 
       {/* CREATE POST */}
-      <CreatePost refresh={fetchPosts} />
+      <CreatePost refresh={fetchPosts} ref={createPostRef} />
 
       {/* POSTS */}
        {posts.map((post) => (
