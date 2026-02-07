@@ -1,0 +1,73 @@
+/* BACKDROP */
+.comment-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: flex-end;
+  z-index: 999;
+}
+
+/* MODAL (HALF SCREEN) */
+.comment-modal {
+  width: 100%;
+  max-width: 420px;
+  height: 60vh;               /* 👈 half screen */
+  background: #1c1c1c;
+  color: white;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.35s ease forwards;
+}
+
+/* HEADER */
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid #333;
+  font-weight: 600;
+}
+
+/* BODY */
+.comment-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+/* COMMENT ROW */
+.comment-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+
+.comment-user {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.comment-text {
+  font-weight: normal;
+}
+
+/* SLIDE ANIMATION */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.drag-bar {
+  width: 40px;
+  height: 4px;
+  background: #555;
+  border-radius: 10px;
+  margin: 8px auto;
+}

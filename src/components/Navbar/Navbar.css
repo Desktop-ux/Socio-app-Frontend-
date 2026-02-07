@@ -1,0 +1,20 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  z-index: 100;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
