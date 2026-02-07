@@ -4,7 +4,7 @@ import api from "../../api/api";
 // import "./../Login/Login.css";
 import './Signup.css'
 
-export default function Signup({ onSignup, goLogin }) {
+export default function Signup({ onSignin, goLogin }) {
   const cardRef = useRef(null);
 
   const [username, setUsername] = useState("");
@@ -31,7 +31,7 @@ export default function Signup({ onSignup, goLogin }) {
     });
 
     // after signup → go to login
-    onSignup();
+    onSignin();
   };
 
   return (

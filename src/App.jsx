@@ -16,7 +16,7 @@ function App() {
   const createPostRef = useRef(null);
 
   /* ---------- AUTH HANDLERS ---------- */
-  const handleLoginSuccess = () => {
+  const handleAuthSuccess = () => {
     setLoggedIn(true);
     setPage("feed");
   };
@@ -26,16 +26,13 @@ function App() {
     setLoggedIn(false);
     setPage("login");
   };
+
+  /* ---------- NAVIGATION ---------- */
   const goHome = () => {
     setPage("feed");
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-
-  /* ---------- NAVIGATION HANDLERS ---------- */
   const goFeed = () => setPage("feed");
 
   const toggleProfile = () => {
@@ -43,15 +40,9 @@ function App() {
   };
 
   const scrollToCreatePost = () => {
-
     setPage("feed");
-
-    // Scroll after render
     setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 0);
   };
 
@@ -59,11 +50,14 @@ function App() {
   if (!loggedIn) {
     return page === "login" ? (
       <Login
-        onLogin={handleLoginSuccess}
+        onLogin={handleAuthSuccess}
         goSignup={() => setPage("signup")}
       />
     ) : (
-      <Signup goLogin={() => setPage("login")} />
+      <Signup
+        onSignin={handleAuthSuccess}
+        goLogin={() => setPage("login")}
+      />
     );
   }
 
@@ -71,29 +65,21 @@ function App() {
   return (
     <>
       <Sidebar
-        goFeed={() => setPage("feed")}
+        goFeed={goFeed}
         goProfile={toggleProfile}
         goCreate={scrollToCreatePost}
-        
       />
-      {/* HEADER (TOP) */}
+
       <Header
         goHome={goFeed}
         goProfile={toggleProfile}
       />
 
-      {/* MAIN CONTENT */}
       <div className="app-content">
-        {page === "feed" && (
-          <Feed createPostRef={createPostRef} />
-        )}
-
-        {page === "profile" && (
-          <Profile onLogout={handleLogout} />
-        )}
+        {page === "feed" && <Feed createPostRef={createPostRef} />}
+        {page === "profile" && <Profile onLogout={handleLogout} />}
       </div>
 
-      {/* NAVBAR (BOTTOM) */}
       <Navbar
         active={page}
         goFeed={goHome}
