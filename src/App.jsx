@@ -47,10 +47,10 @@ function App() {
 
     // Scroll after render
     setTimeout(() => {
-      createPostRef.current?.scrollIntoView({
-        behavior: "smooth",
-        top:0
-      });
+      window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     }, 0);
   };
 

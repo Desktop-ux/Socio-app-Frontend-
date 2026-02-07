@@ -17,7 +17,7 @@ export default function CommentCont({ comments, onClose }) {
         <div className="drag-bar"></div>
 
         <div className="comment-header">
-          <span>Comments</span>
+          <span>Comments ({comments.length})</span>
           <button onClick={onClose}>✕</button>
         </div>
 
@@ -29,8 +29,11 @@ export default function CommentCont({ comments, onClose }) {
                 <span className="comment-user">{c.username}</span>
                 <span className="comment-text">{c.text}</span>
               </div>
+           
             </div>
+            
           ))}
+        
         </div>
       </div>
     </div>

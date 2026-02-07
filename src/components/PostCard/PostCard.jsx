@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from "../../api/api";
 import CommentBox from "../CommentBox/CommentBox";
 import LikeListModal from "../likeList/LikeListModal";
+import Avatar from "../Avatar/Avatar";
 import "./PostCard.css";
 
 export default function PostCard({ post, refresh }) {
@@ -27,7 +28,10 @@ export default function PostCard({ post, refresh }) {
 
   return (
     <div className="post-card">
-      <p className="username">{post.username}</p>
+       <div className="post-header">
+        <Avatar name={post.username} size={36} />
+        <span className="post-username">{post.username}</span>
+      </div>
 
       {post.text && <p className="post-text">{post.text}</p>}
 
@@ -50,7 +54,7 @@ export default function PostCard({ post, refresh }) {
       )}
 
       {/* ACTIONS */}
-      <div className="post-actions">
+      <div className="like-actions">
         {/* LIKE ICON */}
         <span
           onClick={handleLike}
@@ -66,7 +70,6 @@ export default function PostCard({ post, refresh }) {
             <i className="fa-regular fa-heart"></i>
           )}
         </span>
-
         <span
           className="like-count"
           onClick={() => {

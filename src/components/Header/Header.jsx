@@ -1,5 +1,6 @@
 import "./Header.css";
 import Avatar from "../Avatar/Avatar";
+import logo from '../../assets/transparent_logo.png'
 
 export default function Header({goProfile}) {
   // get username safely
@@ -8,7 +9,9 @@ export default function Header({goProfile}) {
   return (
     <div className="app-header">
       {/* LEFT */}
-      <h2 className="logo">Social</h2>
+      <h2 className="logo">
+        <img src={logo} alt="" />
+      </h2>
 
       {/* RIGHT */}
       <div className="header-right">

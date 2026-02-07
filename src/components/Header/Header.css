@@ -3,21 +3,26 @@
   top: 0;
   left: 0;
   right: 0;
-
   height: 60px;
   background: white;
-
   display: flex;
   align-items: center;      
   justify-content: space-between;
-
   padding: 0 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   z-index: 1000;
 }
 
 .logo {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-weight: 700;
+   
+}
+.logo img{
+  width: 60%;
 }
 
 .header-right {

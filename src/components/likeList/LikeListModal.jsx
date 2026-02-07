@@ -30,8 +30,6 @@ export default function LikeListModal({ likes, onClose }) {
                 <Avatar name={user} size={36} />
                 <div className="like-username">{user}</div>
               </div>
-
-              <button className="follow-btn">Follow</button>
             </div>
           ))}
         </div>

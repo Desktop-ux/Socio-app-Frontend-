@@ -28,6 +28,7 @@ const CreatePost = forwardRef(({ refresh }, ref) => {
 
   return (
     <div ref={ref} className="create-post">
+      <h2>Create Post</h2>
       {/* TEXT */}
       <textarea
         placeholder="What's on your mind?"
@@ -54,7 +55,7 @@ const CreatePost = forwardRef(({ refresh }, ref) => {
       {/* ACTIONS */}
       <div className="create-actions">
         <label className="image-picker">
-          📷 Add Image
+          Add Image
           <input
             type="file"
             accept="image/*"

@@ -43,8 +43,8 @@ export default function Login({ onLogin, goSignup }) {
     <div className="auth-layout">
       {/* LEFT VISUAL (DESKTOP ONLY) */}
       <div className="auth-visual">
-        <h1>Share your moments</h1>
-        <p>Post • Like • Connect</p>
+        {/* <h1>Share your moments</h1>
+        <p>Post • Like • Connect</p> */}
       </div>
 
       {/* RIGHT FORM */}
