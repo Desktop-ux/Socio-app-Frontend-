@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
-import Navbar from "../../Components/Navbar/Navbar";
-import CreatePost from "../../Components/CreatePost/CreatePost";
-import PostCard from "../../Components/PostCard/PostCard";
+import Navbar from "../../components/Navbar/Navbar";
+import CreatePost from "../../components/CreatePost/CreatePost";
+import PostCard from "../../components/PostCard/PostCard";
 import "./Feed.css";
 
 export default function Feed() {
