@@ -1,21 +1,26 @@
-/* Full page center */
-.auth-page {
+/* MOBILE FIRST */
+.auth-layout {
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.304), rgba(0, 0, 0, 0.293)),
-    url("/src/assets/social_bg.jpg");
-  background-size: cover;
-  background-position: center;
+  align-items: center;
+  background: url('../../assets/social_bg.jpg');
+  padding: 16px;
 }
 
+/* Hide visual by default (mobile) */
+.auth-visual {
+  display: none;
+}
 
+/* FORM AREA */
+.auth-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
-
-/* Card */
+/* CARD */
 .auth-card {
   width: 100%;
   max-width: 380px;
@@ -26,7 +31,6 @@
   text-align: center;
 }
 
-/* Title */
 .auth-title {
   font-size: 24px;
   font-weight: 700;
@@ -39,7 +43,7 @@
   margin-bottom: 24px;
 }
 
-/* Inputs */
+/* INPUTS */
 .input-group {
   display: flex;
   flex-direction: column;
@@ -52,14 +56,14 @@
   border-radius: 10px;
   border: 1px solid #ddd;
   font-size: 14px;
-  outline: none;
 }
 
 .input-group input:focus {
+  outline: none;
   border-color: #4f46e5;
 }
 
-/* Button */
+/* BUTTON */
 .primary-btn {
   width: 100%;
   padding: 12px;
@@ -70,21 +74,14 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .primary-btn:hover {
   box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
 }
 
-.primary-btn:active {
-  transform: scale(0.98);
-}
-
-/* Switch */
 .switch-text {
   font-size: 13px;
-  color: #555;
   margin-top: 18px;
 }
 
@@ -93,21 +90,49 @@
   font-weight: 600;
   cursor: pointer;
 }
+@media (min-width: 1024px) {
+  .auth-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: url('./../../assets/purple.jpg');
+    background-position: center;
+    background-size: cover;
+  }
 
-.auth-left {
-  position: absolute;
-  left: 8%;
-  color: white;
-  max-width: 300px;
-}
+  .auth-visual {
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background:  linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),url('./../../assets/login_page.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+  }
 
-.auth-left h1 {
-  font-size: 42px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
+  .auth-visual h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
 
-.auth-left p {
-  font-size: 16px;
-  opacity: 0.85;
+  .auth-visual p {
+    font-size: 16px;
+    opacity: 0.85;
+  }
+
+  .auth-form {
+    width:30vw;
+    height: 50vh;
+    background-color: white;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    align-items: center;
+  }
 }
