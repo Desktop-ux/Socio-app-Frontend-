@@ -3,7 +3,7 @@ import api from "../../api/api";
 import Navbar from "../../components/Navbar/Navbar";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/PostCard/PostCard";
-import "./Feed.css";
+import "./feed.css";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
