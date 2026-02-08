@@ -1,6 +1,6 @@
-/* ======================
+/* 
    BASE (MOBILE + TABLET)
-====================== */
+ */
 
 .like-modal-backdrop {
   position: fixed;
@@ -80,9 +80,9 @@
 }
 
 
-/* ======================
-   DESKTOP ONLY
-====================== */
+/* 
+   DESKTOP 
+ */
 
 @media (min-width: 1024px) {
   .like-modal-backdrop {

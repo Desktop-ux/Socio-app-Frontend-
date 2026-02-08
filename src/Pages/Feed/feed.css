@@ -1,6 +1,6 @@
-/* =========================
+/* 
    MOBILE FIRST (DEFAULT)
-========================= */
+ */
 
 .feed {
   max-width: 500px;
@@ -59,9 +59,9 @@
 }
 
 
-/* =========================
+/* 
    TABLET (CENTER FEED)
-========================= */
+ */
 
 @media (min-width: 640px) {
   .feed {
@@ -71,9 +71,9 @@
 }
 
 
-/* =========================
+/* 
    DESKTOP (LEFT NAV + CENTER FEED)
-========================= */
+ */
 
 @media (min-width: 1024px) {
   .feed {
@@ -81,7 +81,6 @@
     margin: 30px auto;
   }
 
-  /* Reserve space for LEFT NAV */
   body {
     display: flex;
     justify-content: center;
