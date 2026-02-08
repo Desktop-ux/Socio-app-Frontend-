@@ -19,22 +19,30 @@ export default function Signup({ onSignin, goLogin }) {
     );
   }, []);
 
-  const handleSignup = async () => {
-    if (!username || !email || !password) {
-      return alert("Fill all fields");
-    }
+const handleSignup = async () => {
+  if (!username || !email || !password) {
+    return alert("Fill all fields");
+  }
 
-    await api.post("/auth/signup", {
+  try {
+    const res = await api.post("/auth/signup", {
       username,
       email,
       password,
     });
-     localStorage.setItem("username", res.data.username);
-  localStorage.setItem("email", res.data.email);
+
+    // save data
+    localStorage.setItem("username", res.data.username);
+    localStorage.setItem("email", res.data.email);
 
     // after signup → go to login
     onSignin();
-  };
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    alert(err.response?.data?.message || "Signup failed");
+  }
+};
+
 
   return (
     <div className="auth-layout">

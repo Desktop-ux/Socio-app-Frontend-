@@ -7,24 +7,30 @@ const CreatePost = forwardRef(({ refresh }, ref) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
-  const handlePost = async () => {
-    if (!text && !image) {
-      alert("Post cannot be empty");
-      return;
-    }
+ const handlePost = async () => {
+  if (!text && !image) {
+    alert("Post cannot be empty");
+    return;
+  }
 
+  try {
     const formData = new FormData();
     if (text) formData.append("text", text);
     if (image) formData.append("image", image);
 
-    await api.post("/posts", formData);
+    const res = await api.post("/posts", formData);
 
     // reset after post
     setText("");
     setImage(null);
     setPreview(null);
     refresh();
-  };
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    alert(err.response?.data?.message || "Failed to create post");
+  }
+};
+
 
   return (
     <div ref={ref} className="create-post">
