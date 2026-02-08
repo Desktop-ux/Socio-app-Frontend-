@@ -16,28 +16,32 @@ export default function Login({ onLogin, goSignup }) {
     );
   }, []);
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      alert("Fill all fields");
-      return;
-    }
+const handleLogin = async () => {
+  if (!email || !password) {
+    alert("Fill all fields");
+    return;
+  }
 
-    try {
-      const res = await api.post("/auth/login", {
-        email,
-        password,
-      });
+  try {
+    const res = await api.post("/auth/login", {
+      email,
+      password,
+    });
 
-     
-      localStorage.setItem("username", res.data.user.username);
-      localStorage.setItem("email", res.data.user.email);
-      localStorage.setItem("userId", res.data.user._id);
+   
+    localStorage.setItem("token", res.data.token);
 
-      onLogin();
-    } catch (err) {
-      alert("Invalid credentials");
-    }
-  };
+    // store user info
+    localStorage.setItem("username", res.data.user.username);
+    localStorage.setItem("email", res.data.user.email);
+    localStorage.setItem("userId", res.data.user._id);
+
+    onLogin();
+  } catch (err) {
+    alert("Invalid credentials");
+  }
+};
+
 
   return (
     <div className="auth-layout">
