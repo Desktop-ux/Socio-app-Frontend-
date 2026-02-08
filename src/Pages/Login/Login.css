@@ -92,11 +92,12 @@
 }
 @media (min-width: 1024px) {
   .auth-layout {
+    
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background: url('./../../assets/purple.jpg');
+    background: url('./../../assets/blue_bg.jpg');
     background-position: center;
     background-size: cover;
   }

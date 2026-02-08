@@ -29,6 +29,8 @@ export default function Signup({ onSignin, goLogin }) {
       email,
       password,
     });
+     localStorage.setItem("username", res.data.username);
+  localStorage.setItem("email", res.data.email);
 
     // after signup → go to login
     onSignin();
@@ -43,8 +45,8 @@ export default function Signup({ onSignin, goLogin }) {
       </div>
 
       {/* RIGHT FORM */}
-      <div className="auth-form">
-        <div className="auth-card" ref={cardRef}>
+      <div className="auth-form-signup">
+        <div className="auth-card-signup" ref={cardRef}>
           <h2 className="auth-title">Create Account 🚀</h2>
           <p className="auth-subtitle">Sign up to get started</p>
 
