@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import api from "../../api/api";
 // import "./../Login/Login.css";
 import './Signup.css'
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Signup({ onSignin, goLogin }) {
   const cardRef = useRef(null);
@@ -19,30 +20,31 @@ export default function Signup({ onSignin, goLogin }) {
     );
   }, []);
 
-const handleSignup = async () => {
-  if (!username || !email || !password) {
-    return alert("Fill all fields");
-  }
+  const handleSignup = async () => {
+    if (!username || !email || !password) {
+      return alert("Fill all fields");
+       
+    }
 
-  try {
-    const res = await api.post("/auth/signup", {
-      username,
-      email,
-      password,
-    });
+    try {
+      const res = await api.post("/auth/signup", {
+        username,
+        email,
+        password,
+      });
 
-    // save data
-    localStorage.setItem("username", res.data.user.username);
-    localStorage.setItem("email", res.data.user.email);
-    localStorage.setItem("token", res.data.token);
-    // after signup → go to login
-   onSignin(res.data.user);
+      // save data
+      localStorage.setItem("username", res.data.user.username);
+      localStorage.setItem("email", res.data.user.email);
+      localStorage.setItem("token", res.data.token);
+      // after signup → go to login
+      onSignin(res.data.user);
 
-  } catch (err) {
-    console.error(err.response?.data || err.message);
-    alert(err.response?.data?.message || "Signup failed");
-  }
-};
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      alert(err.response?.data?.message || "Signup failed");
+    }
+  };
 
 
   return (

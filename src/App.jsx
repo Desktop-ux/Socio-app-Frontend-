@@ -7,7 +7,7 @@ import Profile from "./Pages/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
-
+ 
 function App() {
   const { user, loading, setUser } = useAuth();
   const [page, setPage] = useState("feed");
@@ -35,10 +35,15 @@ function App() {
     );
   }
 
-  const handleLogout = () => {
+ const handleLogout = async () => {
+  try {
+    await api.post("/auth/logout"); 
     setUser(null);
     setPage("login");
-  };
+  } catch (err) {
+    console.error("Logout failed");
+  }
+};
 
   const goHome = () => setPage("feed");
   const toggleProfile = () =>
