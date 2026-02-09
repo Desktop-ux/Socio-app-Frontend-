@@ -9,6 +9,7 @@ export default function PostCard({ post, refresh }) {
   const currentUser = localStorage.getItem("username");
   const isLiked = post.likes.includes(currentUser);
   const [showLikeModal, setShowLikeModal] = useState(false);
+  const [commentText, setCommentText] = useState("");
 
   const [showLikes, setShowLikes] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
@@ -28,7 +29,7 @@ export default function PostCard({ post, refresh }) {
 
   return (
     <div className="post-card">
-       <div className="post-header">
+      <div className="post-header">
         <Avatar name={post.username} size={36} />
         <span className="post-username">{post.username}</span>
       </div>
@@ -100,19 +101,33 @@ export default function PostCard({ post, refresh }) {
       <CommentBox comments={post.comments} />
 
       {/* ADD COMMENT */}
-      <input
-        className="comment-input"
-        placeholder="Add a comment..."
-        onKeyDown={async (e) => {
-          if (e.key === "Enter" && e.target.value.trim()) {
+     
+      <div className="comment-input-wrapper">
+        <input
+          className="comment-input"
+          placeholder="Add a comment..."
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+        />
+
+        <button
+          className="comment-send-btn"
+          disabled={!commentText.trim()}
+          onClick={async () => {
+            if (!commentText.trim()) return;
+
             await api.post(`/posts/${post._id}/comment`, {
-              text: e.target.value
+              text: commentText
             });
-            e.target.value = "";
+
+            setCommentText("");
             refresh();
-          }
-        }}
-      />
+          }}
+        >
+          <i className="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+
       {showLikeModal && post.likes.length > 0 && (
         <LikeListModal
           likes={post.likes}
