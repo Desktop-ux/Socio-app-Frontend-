@@ -32,9 +32,9 @@ const handleSignup = async () => {
     });
 
     // save data
-    localStorage.setItem("username", res.data.username);
-    localStorage.setItem("email", res.data.email);
-
+    localStorage.setItem("username", res.data.user.username);
+    localStorage.setItem("email", res.data.user.email);
+    localStorage.setItem("token", res.data.token);
     // after signup → go to login
     onSignin();
   } catch (err) {
