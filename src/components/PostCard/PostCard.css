@@ -18,6 +18,16 @@
   gap: 10px;
   margin-bottom: 6px;
 }
+.dot{
+  font-size: 0.25rem;
+  display:flex;
+  align-items: center;
+  justify-content: center;  
+}
+span.post-time{
+  font-size: 0.75rem;
+  /* margin: 0rem 0.5rem ; */
+}
 .user_detail{
   display: flex;
   flex-direction: row;

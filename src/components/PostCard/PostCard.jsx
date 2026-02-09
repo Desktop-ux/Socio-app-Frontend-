@@ -4,6 +4,7 @@ import api from "../../api/api";
 import CommentBox from "../CommentBox/CommentBox";
 import LikeListModal from "../likeList/LikeListModal";
 import Avatar from "../Avatar/Avatar";
+import { formatTime } from "../../../formatTime";
 import "./PostCard.css";
 
 export default function PostCard({ post, refresh, onDelete }) {
@@ -37,9 +38,15 @@ export default function PostCard({ post, refresh, onDelete }) {
       <div className="post-header">
         <div className="user_detail">
           <Avatar name={post.username} size={36} />
-        <span className="post-username">{post.username}</span>
+          <span className="post-username">{post.username}</span>
+          <div className="dot">
+            <i class="fa-solid fa-circle"></i>
+          </div>
+          <span className="post-time">
+           Posted {formatTime(post.createdAt)}
+          </span>
         </div>
-        
+
 
         {user?.id === post.userId && (
           <button className="delete-post-btn" onClick={handleDelete}>
@@ -47,6 +54,8 @@ export default function PostCard({ post, refresh, onDelete }) {
           </button>
         )}
       </div>
+
+
 
       {post.text && <p className="post-text">{post.text}</p>}
 
