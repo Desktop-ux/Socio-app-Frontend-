@@ -7,6 +7,7 @@ import Profile from "./Pages/Profile/Profile";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
+import api from "./api/api";
  
 function App() {
   const { user, loading, setUser } = useAuth();
@@ -41,7 +42,7 @@ function App() {
     setUser(null);
     setPage("login");
   } catch (err) {
-    console.error("Logout failed");
+    console.error(err);
   }
 };
 
