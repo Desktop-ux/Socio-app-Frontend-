@@ -14,10 +14,25 @@
 .post-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   margin-bottom: 6px;
 }
-
+.user_detail{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+.delete-post-btn{
+  color: red;
+  border: none;
+  outline: none;
+  transition: 0.5s ease-in-out;
+}
+.delete-post-btn:active{
+  transform: scale(0.8);
+}
 .post-username {
   font-weight: 600;
   font-size: 14px;

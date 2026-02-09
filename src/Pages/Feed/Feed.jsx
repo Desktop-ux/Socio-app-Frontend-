@@ -17,6 +17,11 @@ export default function Feed({createPostRef }) {
     fetchPosts();
   }, []);
 
+  const handleDelete = (id) => {
+  setPosts((prev) => prev.filter((p) => p._id !== id));
+};
+
+
   return (
     <div className="feed">
       <h2 className="feed-title">Feed</h2>
@@ -30,6 +35,7 @@ export default function Feed({createPostRef }) {
           key={post._id}
           post={post}
           refresh={fetchPosts}
+          onDelete={handleDelete}
         />
       ))}
       {/* NAVBAR */}

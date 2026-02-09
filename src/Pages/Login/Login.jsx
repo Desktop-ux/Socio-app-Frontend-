@@ -36,7 +36,8 @@ const handleLogin = async () => {
     localStorage.setItem("email", res.data.user.email);
     localStorage.setItem("userId", res.data.user._id);
 
-    onLogin();
+    onLogin(res.data.user);
+
   } catch (err) {
     alert("Invalid credentials");
   }

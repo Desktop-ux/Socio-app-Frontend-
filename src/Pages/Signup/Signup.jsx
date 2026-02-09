@@ -36,7 +36,8 @@ const handleSignup = async () => {
     localStorage.setItem("email", res.data.user.email);
     localStorage.setItem("token", res.data.token);
     // after signup → go to login
-    onSignin();
+   onSignin(res.data.user);
+
   } catch (err) {
     console.error(err.response?.data || err.message);
     alert(err.response?.data?.message || "Signup failed");

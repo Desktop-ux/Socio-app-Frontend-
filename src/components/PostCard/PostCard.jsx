@@ -1,17 +1,17 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import api from "../../api/api";
 import CommentBox from "../CommentBox/CommentBox";
 import LikeListModal from "../likeList/LikeListModal";
 import Avatar from "../Avatar/Avatar";
 import "./PostCard.css";
 
-export default function PostCard({ post, refresh }) {
-  const currentUser = localStorage.getItem("username");
-  const isLiked = post.likes.includes(currentUser);
+export default function PostCard({ post, refresh, onDelete }) {
+  const { user } = useAuth();
+  const isLiked = post.likes.includes(user?.username);
+
   const [showLikeModal, setShowLikeModal] = useState(false);
   const [commentText, setCommentText] = useState("");
-
-  const [showLikes, setShowLikes] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
 
   const handleLike = async () => {
@@ -27,16 +27,29 @@ export default function PostCard({ post, refresh }) {
     }
   };
 
+  const handleDelete = async () => {
+    await api.delete(`/posts/${post._id}`);
+    onDelete(post._id);
+  };
+
   return (
     <div className="post-card">
       <div className="post-header">
-        <Avatar name={post.username} size={36} />
+        <div className="user_detail">
+          <Avatar name={post.username} size={36} />
         <span className="post-username">{post.username}</span>
+        </div>
+        
+
+        {user?.id === post.userId && (
+          <button className="delete-post-btn" onClick={handleDelete}>
+            <i className="fa-solid fa-trash"></i>
+          </button>
+        )}
       </div>
 
       {post.text && <p className="post-text">{post.text}</p>}
 
-      {/* IMAGE WITH DOUBLE TAP */}
       {post.imageUrl && (
         <div
           className="post-image-wrapper"
@@ -54,9 +67,7 @@ export default function PostCard({ post, refresh }) {
         </div>
       )}
 
-      {/* ACTIONS */}
       <div className="like-actions">
-        {/* LIKE ICON */}
         <span
           onClick={handleLike}
           style={{
@@ -71,6 +82,7 @@ export default function PostCard({ post, refresh }) {
             <i className="fa-regular fa-heart"></i>
           )}
         </span>
+
         <span
           className="like-count"
           onClick={() => {
@@ -81,27 +93,10 @@ export default function PostCard({ post, refresh }) {
         >
           {post.likes.length} likes
         </span>
-
       </div>
 
-      {/* LIKED USERS */}
-      {showLikes && post.likes.length > 0 && (
-        <div className="liked-users">
-          Liked by{" "}
-          {post.likes.map((user, i) => (
-            <span key={i} className="liked-user">
-              {user}
-              {i < post.likes.length - 1 ? ", " : ""}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* COMMENTS */}
       <CommentBox comments={post.comments} />
 
-      {/* ADD COMMENT */}
-     
       <div className="comment-input-wrapper">
         <input
           className="comment-input"
@@ -114,8 +109,6 @@ export default function PostCard({ post, refresh }) {
           className="comment-send-btn"
           disabled={!commentText.trim()}
           onClick={async () => {
-            if (!commentText.trim()) return;
-
             await api.post(`/posts/${post._id}/comment`, {
               text: commentText
             });
@@ -134,8 +127,6 @@ export default function PostCard({ post, refresh }) {
           onClose={() => setShowLikeModal(false)}
         />
       )}
-
-
     </div>
   );
 }

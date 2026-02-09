@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useAuth } from "./context/AuthContext";
 import Feed from "./Pages/Feed/Feed";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
@@ -8,36 +9,40 @@ import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
-  /* ---------- APP STATE ---------- */
-  const [page, setPage] = useState("login");
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  /* ---------- CREATE POST SCROLL REF ---------- */
+  const { user, loading, setUser } = useAuth();
+  const [page, setPage] = useState("feed");
   const createPostRef = useRef(null);
 
-  /* ---------- AUTH HANDLERS ---------- */
-  const handleAuthSuccess = () => {
-    setLoggedIn(true);
-    setPage("feed");
-  };
+  if (loading) return null;
+
+  if (!user) {
+    return page === "login" ? (
+      <Login
+        onLogin={(userData) => {
+          setUser(userData);
+          setPage("feed");
+        }}
+        goSignup={() => setPage("signup")}
+      />
+    ) : (
+      <Signup
+        onSignin={(userData) => {
+          setUser(userData);
+          setPage("feed");
+        }}
+        goLogin={() => setPage("login")}
+      />
+    );
+  }
 
   const handleLogout = () => {
-    localStorage.clear();
-    setLoggedIn(false);
+    setUser(null);
     setPage("login");
   };
 
-  /* ---------- NAVIGATION ---------- */
-  const goHome = () => {
-    setPage("feed");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const goFeed = () => setPage("feed");
-
-  const toggleProfile = () => {
+  const goHome = () => setPage("feed");
+  const toggleProfile = () =>
     setPage((prev) => (prev === "profile" ? "feed" : "profile"));
-  };
 
   const scrollToCreatePost = () => {
     setPage("feed");
@@ -46,34 +51,15 @@ function App() {
     }, 0);
   };
 
-  /* ---------- AUTH FLOW ---------- */
-  if (!loggedIn) {
-    return page === "login" ? (
-      <Login
-        onLogin={handleAuthSuccess}
-        goSignup={() => setPage("signup")}
-      />
-    ) : (
-      <Signup
-        onSignin={handleAuthSuccess}
-        goLogin={() => setPage("login")}
-      />
-    );
-  }
-
-  /* ---------- APP UI ---------- */
   return (
     <>
       <Sidebar
-        goFeed={goFeed}
+        goFeed={goHome}
         goProfile={toggleProfile}
         goCreate={scrollToCreatePost}
       />
 
-      <Header
-        goHome={goFeed}
-        goProfile={toggleProfile}
-      />
+      <Header goHome={goHome} goProfile={toggleProfile} />
 
       <div className="app-content">
         {page === "feed" && <Feed createPostRef={createPostRef} />}
