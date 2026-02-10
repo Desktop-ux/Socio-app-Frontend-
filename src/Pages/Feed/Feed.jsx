@@ -3,14 +3,21 @@ import api from "../../api/api";
 import Navbar from "../../components/Navbar/Navbar";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import PostCard from "../../components/PostCard/PostCard";
+import FeedSkeleton from "../../components/FeedLoading/FeedLoading";
 import "./feed.css";
 
-export default function Feed({createPostRef }) {
+
+export default function Feed({ createPostRef }) {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
-    const res = await api.get("/posts");
-    setPosts(res.data);
+    try {
+      const res = await api.get("/posts");
+      setPosts(res.data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -18,19 +25,26 @@ export default function Feed({createPostRef }) {
   }, []);
 
   const handleDelete = (id) => {
-  setPosts((prev) => prev.filter((p) => p._id !== id));
-};
+    setPosts((prev) => prev.filter((p) => p._id !== id));
+  };
 
+  if (loading) {
+    return (
+      <div className="feed">
+        <h2 className="feed-title">Feed</h2>
+        <CreatePost ref={createPostRef} />
+        <FeedSkeleton />
+      </div>
+    );
+  }
 
   return (
     <div className="feed">
       <h2 className="feed-title">Feed</h2>
 
-      {/* CREATE POST */}
       <CreatePost refresh={fetchPosts} ref={createPostRef} />
 
-      {/* POSTS */}
-       {posts.map((post) => (
+      {posts.map((post) => (
         <PostCard
           key={post._id}
           post={post}
@@ -38,9 +52,8 @@ export default function Feed({createPostRef }) {
           onDelete={handleDelete}
         />
       ))}
-      {/* NAVBAR */}
-      <Navbar onLogout={() => window.location.reload()} />
 
+      <Navbar onLogout={() => window.location.reload()} />
     </div>
   );
 }
