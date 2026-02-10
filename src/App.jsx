@@ -8,13 +8,14 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import api from "./api/api";
+import Apploader from "./components/Apploader/Apploader";
  
 function App() {
   const { user, loading, setUser } = useAuth();
   const [page, setPage] = useState("feed");
   const createPostRef = useRef(null);
 
-  if (loading) return null;
+  if (loading) return <Apploader/>;
 
   if (!user) {
     return page === "login" ? (
